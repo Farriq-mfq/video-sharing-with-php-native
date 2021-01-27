@@ -1,0 +1,25 @@
+RewriteEngine On
+
+RewriteRule ^page/([a-z]*)$ ./index.php?q=$1
+RewriteRule ^page/view/(.*)$ ./index.php?q=view&slug=$1
+
+ErrorDocument 404 http://localhost/tekek/404.php
+
+
+# compress text, HTML, JavaScript, CSS, and XML
+
+<IfModule mod_ext_filter.c>
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+# remove browser bugs
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
